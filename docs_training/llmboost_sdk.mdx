@@ -1,0 +1,191 @@
+---
+sidebar_position: 2
+---
+
+# Pretrain Python-API
+
+An unified API of `LLMBoostPretrain` is provided to make your LLM pretraining simple, customizable and efficient. `LLMBoostPretrain` supports customizable components and configuration for pretraining large language models with all main kinds of parallelisms. The parameters allow users to define the dataset pipeline, model architecture, optimizer settings, precision, logging, and distributed training behavior.
+
+### Step 0: Knowing `LLMBoostPretrain` API
+`LLMBoostPretrain` is the main class of LLMBoost's pretraining. It receives input parameters of model architectures (num of layers, hidden layer size, etc.) and all set of training stategy and setups (parallelism, fp8 precision, nccl setup and etc). The belowing box details the explanations of `LLMBoostPretrain` input parameters.   
+
+<details>
+<summary><strong>📌 Click to expand parameter descriptions</strong></summary>
+
+<div>
+
+Modular Providers:
+- **train_valid_test_datasets_provider** (`func`): Function to generate training, validation, and test datasets. - *[Required]*.
+- **model_provider** (``func``): Function that builds and returns a complete model instance,
+        including its configuration, transformer layer specification (e.g., TE or legacy),
+        and optional preprocessing/postprocessing logic. - *[Required]*.
+- **model_type** (``func``): Enum indicating whether the model is encoder, decoder, or both. - *[Required]*.
+- **forward_step** (``func``): Function that defines forward pass and loss computation. - *[Required]*.
+
+Model Architecture:
+- **num_layers** (`int`): Number of transformer layers. - *[Required]*.
+- **hidden_size** (`int`): Hidden dimension size. - *[Required]*.
+- **ffn_hidden_size** (`int`): Feedforward network dimension size. - *[Required]*.
+- **num_attention_heads** (`int`): Number of attention heads per layer. - *[Required]*.
+- **max_position_embeddings** (`int`): Maximum supported sequence length. - *[Required]*.
+- **num_query_groups** (`int`): Number of query groups (used in GQA). - *[Required]*.
+- **seq_length** (`int`): Input sequence length during training. - *[Required]*.
+- **untie_embeddings_and_output_weights** (`bool`): Whether to decouple input embedding and output weights. Defaultly set to `True`.
+- **no_position_embedding** (`bool`): If True, disables position embeddings. Defaultly set to `True`.
+- **disable_bias_linear** (`bool`): If True, disables biases in linear layers. Defaultly set to `True`.
+- **swiglu** (`bool`): Use SwiGLU activation function in FFNs. Defaultly set to `True`.
+- **position_embedding_type** (`str`): Type of positional embedding, e.g., "rope". Defaultly set to `rope`.
+- **disable_te_fused_rope** (`bool`): Disables TransformerEngine's fused RoPE. Defaultly set to `False`.
+- **init_method_std** (`float`): Std deviation for model weight initialization. Defaultly set to `0.02`.
+- **attention_dropout** (`float`): Dropout rate applied in attention layers. Defaultly set to `0.0`.
+- **hidden_dropout** (`float`): Dropout rate applied after linear layers. Defaultly set to `0.0`.
+- **normalization** (`str`): Normalization method to use (e.g., "RMSNorm"). Defaultly set to `RMSNorm`.
+- **group_query_attention** (`bool`): Enables Grouped Query Attention if True. Defaultly set to `True`.
+- **use_flash_attn** (`bool`): Enables FlashAttention for efficient attention computation. Defaultly set to `True`.
+- **rotary_base** (`Option[int]`): Base frequency used in RoPE.
+
+Mixture of Experts (MoE):
+- **num_experts** (`Option[int]`): Number of MoE experts.
+- **moe_router_topk** (`Option[int]`): Number of top experts per token. 
+- **moe_router_load_balancing_type** (`Option[str]`): Load balancing method ("aux_loss", etc.).
+- **moe_aux_loss_coeff** (`Option[float]`): Coefficient for MoE auxiliary loss.
+- **moe_grouped_gemm** (`Option[bool]`): Whether to use grouped GEMM for MoE.
+- **moe_token_dispatcher_type** (`Option[str]`): Token dispatching strategy ("alltoall", etc.).
+
+Training Hyperparameters:
+- **micro_batch_size** (`int`): Batch size per GPU. -*[Required]*.
+- **global_batch_size** (`int`): Total batch size across all GPUs. -*[Required]*.
+- **train_iters** (`int`): Total number of training iterations. -*[Required]*.
+- **lr** (`float`): Peak learning rate. Defaultly set to `1e-4`.
+- **min_lr** (`float`): Minimum learning rate after decay. Defaultly set to `1e-5`. 
+- **lr_decay_iters** (`int`): Iterations over which learning rate decays. Defaultly set to `320000`.
+- **lr_decay_style** (`str`): Learning rate decay strategy ("cosine", "linear", etc.). Defaultly set to `cosine`.
+- **weight_decay** (`float`): Weight decay coefficient for optimizer. Defaulty set to `1.0e-1`.
+- **lr_warmup_iters** (`Optional[int]`): Number of warmup iterations for learning rate.
+- **clip_grad** (`float`): Maximum allowed gradient norm. Defaultly set to `1.0`.
+- **optimizer** (`str`): Optimizer type ("adam", etc.). Defaultly set to `adam`.
+
+Parallelism Strategy:
+- **tp** (`int`): Tensor parallel size. Defaultly set to `8`.
+- **pp** (`int`): Pipeline parallel size. Defaultly set to `1`.
+- **cp** (`int`): Context parallel size. Defaultly set to `1`.
+- **ep** (`int`): Expert parallel size. Defaultly set to `1`.
+- **sp** (`int`): Enables sequence parallelism. Defaultly set to `1`.
+- **no_async_tensor_model_parallel_allreduce** (`bool`): Disables async all-reduce across tensor parallel groups. Defaultly set to `True`.
+- **no_masked_softmax_fusion** (`bool`): Disables fused masked softmax. Defaultly set to `True`.
+- **no_gradient_accumulation_fusion** (`bool`): Disables gradient accumulation fusion. Defaulty set to `True`.
+
+Data and Tokenization:
+- **tokenizer_model** (`str`): Path to tokenizer model file. -*[Required]*.
+- **tensorboard_dir** (`str`): Path to store TensorBoard logs. -*[Required]*.
+- **tokenizer_type** (`str`): Tokenizer implementation type (e.g., "HuggingFaceTokenizer"). Defaultly set to `HuggingFaceTokenizer`.
+- **dataloader_type** (`str`): Data loading strategy ("cyclic", etc.). Defaultly set to `cyclic`.
+- **eval_interval** (`int`): Interval (in iterations) to run evaluation. Defaultly set to `320000`.
+- **mock_data** (`bool`): If True, uses mock data for testing. Defaultly set to `True`.
+
+Precision Settings:
+- **bf16** (`bool`): Use bfloat16 precision. Defaultly set to `True`.
+- **te_fp8** (`bool`): Use FP8 precision with TransformerEngine. Defaultly set to `False`.
+
+Logging & Checkpointing:
+- **log_interval** (`int`): Iteration interval for logging stats. Defaultly set to `1`.
+- **save_interval** (`int`): Iteration interval for saving checkpoints. Defaultly set to `5000`.
+- **log_throughput** (`bool`): Whether to log training throughput. Defaultly set to `True`.
+- **no_save_optim** (`bool`): If True, skips saving optimizer state. Defaultly set to `True`.
+- **eval_iters** (`int`): Number of evaluation iterations. Defaultly set to "-1".
+- **no_load_optim** (`Optional[bool]`): Skips loading optimizer state from checkpoint.
+- **no_load_rng** (`Optional[bool]`): Skips loading RNG state from checkpoint.
+
+Distributed Training:
+- **distributed_backend** (`str`): Backend used for distributed training ("nccl", "gloo", etc.). Defaultly set to `nccl`.
+- **distributed_timeout_minutes** (`int`): Timeout duration (in minutes) for distributed backend. Defaultly set to `120`.
+- **use_distributed_optimizer** (`bool`): Use distributed optimizer. Defaultly set to `True`.
+- **overlap_param_gather** (`bool`): Overlap parameter gathering with backward pass. Defaultly set to `True`.
+- **overlap_grad_reduce** (`bool`): Overlap gradient reduction with computation. Defaultly set to `True`.
+- **use_contiguous_parameters_in_local_ddp** (`bool`): Use contiguous parameter layout in DDP. Defaultly set to `False`.
+
+Other Settings:
+- **use_mcore_models** (`bool`): Enables mCore-optimized model definitions. Default set to `True`.
+- **gemm_tuning** (`bool`): Enables autotuning of GEMM kernels. Default set to `True`.
+- **args_defaults** (`Dict[]`): Dictionary of default args for overriding command-line inputs. Default set to `{}`.
+
+</div>
+</details>
+
+`LLMBoostPretrain` also provides an simple function to start the pretraining after you instantialize the engine. You can use `LLMBoostPretrain.run()` to start the pretraining.
+
+### Step 1: Lanuch the Docker
+
+Start the LLMBoost container.
+
+```
+# FOR AMD GPUs
+docker run --rm -it \
+    --network host \
+    --ipc host \
+    --uts host \
+    --cap-add=SYS_PTRACE \
+    --security-opt seccomp=unconfined \
+    --group-add video \
+    --device /dev/dri:/dev/dri \
+    --device /dev/kfd:/dev/kfd \
+    mb-llmboost-training:prod
+```
+
+Next, since the model tokenizer is defaultly downloading from huggingface. Please authenticate to HuggingFace via the HuggingFace CLI by running the following command:
+
+```
+# EXAMPLE COMMANDS
+export HUGGING_FACE_HUB_TOKEN=<your-hf-token>
+huggingface-cli login
+```
+
+
+### Step 2: Using LLM inference in a Python program
+
+The belowing python script gives an example to pretrain a `Llama-2-7b-chat-hf` model.   
+
+```python
+# /workspace/apps/llama2_dev_test.py
+from llmboost import LLMBoostPretrain
+from llmboost.train.dataset_provider.gpt_dataset_provider import (
+    gpt_dataset_provider,
+)
+from llmboost.train.model_provider.gpt_model_provider import gpt_model_provider
+from llmboost.train.forward_step.gpt_forward_step import gpt_forward_step
+from megatron.core.enums import ModelType
+
+if __name__ == "__main__":
+    # example of llama2-7B pretraining
+    llmboost_trainer = LLMBoostPretrain(
+        gpt_dataset_provider,
+        gpt_model_provider,
+        ModelType.encoder_or_decoder,
+        gpt_forward_step,
+        args_defaults={"tokenizer_type": "GPT2BPETokenizer"},
+        num_layers=32,
+        hidden_size=4096,
+        ffn_hidden_size=14336,
+        num_attention_heads=32,
+        seq_length=4096,
+        max_position_embeddings=128000,
+        num_query_groups=8,
+        # training hyperparams
+        micro_batch_size=2,
+        global_batch_size=128,
+        train_iters=50,
+        # training stategy
+        tp=1,
+        # data arguments
+        tokenizer_model="meta-llama/Llama-2-7b-chat-hf",
+        tensorboard_dir="logs/log_0.txt",
+        te_fp8=1,  # enable using fp8
+    )
+    llmboost_trainer.run()
+```
+
+Then, you could run the training by the following command, which will start training the `Llama-2-7b-chat-hf` model on 8 GPUs.
+
+```bash
+torchrun --nproc_per_node=8 /workspace/apps/llama2_dev_test.py
+```

@@ -1,0 +1,10 @@
+{
+    "label": "Tutorials",
+    "collapsed": false,
+    "position": 2,
+    "link": {
+        "slug": "/how_to/category",
+        "type": "generated-index",
+        "description": "Different ways to use LLMBoost:"
+    }
+}
