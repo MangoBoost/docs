@@ -15,13 +15,13 @@ LLMBoost is MangoBoost’s enterprise-grade MLOps software platform designed to 
 
 ## Key Components
 
-### 🧠 [Inference](/inference)
+### 🧠 [Inference](/llmboost/inference)
 High-performance AI model inference with unprecedented speed and efficiency. Get started with deploying your models for production workloads.
 
-### 📚 [Training](/training)  
+### 📚 [Training](/llmboost/training)  
 Comprehensive model training capabilities for developing custom AI solutions from scratch.
 
-### 🔄 [Finetuning](/finetuning)
+### 🔄 [Finetuning](/llmboost/finetuning)
 Advanced model fine-tuning for adapting pre-trained models to specialized use cases and domains.
 
 ## Why Choose LLMBoost?
@@ -35,6 +35,6 @@ Advanced model fine-tuning for adapting pre-trained models to specialized use ca
 
 Choose your path based on your needs:
 
-- **New to AI deployment?** Start with [Inference](/inference)
-- **Building custom models?** Explore [Training](/training)  
-- **Adapting existing models?** Learn about [Finetuning](/finetuning)
+- **New to AI deployment?** Start with [Inference](/llmboost/inference)
+- **Building custom models?** Explore [Training](/llmboost/training)  
+- **Adapting existing models?** Learn about [Finetuning](/llmboost/finetuning)
