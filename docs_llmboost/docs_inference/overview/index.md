@@ -2,10 +2,10 @@
 id: index
 title: Inference Overview
 sidebar_position: 0
-slug: /
+slug: /inference
 ---
 
-# LLMBoost Inference
+# LLMBoost Inference Overview
 
 Welcome to the LLMBoost Inference documentation. This section covers everything you need to deploy and run AI models with unprecedented performance and flexibility.
 
@@ -15,20 +15,20 @@ LLMBoost Inference is a high-performance AI model serving platform designed for 
 
 ## Quick Navigation
 
-### 🚀 [Quick Start](./quick_start.mdx)
+### 🚀 [Quick Start](../quick_start.mdx)
 Get up and running with LLMBoost Inference in minutes.
 
 ### 📖 How To Guides
-- [LLMBoost CLI](./how_to/llmboost_cli.mdx)
-- [LLMBoost Python SDK](./how_to/llmboost_sdk.mdx)
-- [Single Node Setup](./how_to/single_node.mdx)
-- [Multi Node Deployment](./how_to/multi_node.mdx) 
+- [LLMBoost CLI](../how_to/llmboost_cli.mdx)
+- [LLMBoost Python SDK](../how_to/llmboost_sdk.mdx)
+- [Single Node Setup](../how_to/single_node.mdx)
+- [Multi Node Deployment](../how_to/multi_node.mdx) 
 
 ### 🔍 Deep Dive
-- [Tutorial](./deep_dive/tutorial.mdx)
-- [OpenAI API Compatibility](./deep_dive/openai_api.mdx)
-- [OpenWebUI Integration](./deep_dive/openwebui.md)
-- [Parallelism Strategies](./deep_dive/parallelism.md)
+- [Tutorial](../deep_dive/tutorial.mdx)
+- [OpenAI API Compatibility](../deep_dive/openai_api.mdx)
+- [OpenWebUI Integration](../deep_dive/openwebui.md)
+- [Parallelism Strategies](../deep_dive/parallelism.md)
 
 ## Key Features
 
@@ -40,6 +40,6 @@ Get up and running with LLMBoost Inference in minutes.
 
 ## Getting Started
 
-If you're new to LLMBoost Inference, we recommend starting with our [Quick Start Guide](./quick_start.mdx) to get your first model deployed quickly.
+If you're new to LLMBoost Inference, we recommend starting with our [Quick Start Guide](../quick_start.mdx) to get your first model deployed quickly.
 
 For more advanced deployments, explore our [Tutorials](./how_to/category) section for specific use cases and configurations.

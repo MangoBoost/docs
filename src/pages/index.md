@@ -1,9 +1,9 @@
 ---
-title: LLMBoost Overview
+title: Documentation Overview
 hide_table_of_contents: false
 ---
 
-# Mango LLMBoost
+# Mango Documentation
 
 A ready-to-deploy, full-stack MLOps platform for high-performance LLM training and inference—delivering unmatched scalability, cost-efficiency, and deployment flexibility across any environment.
 
@@ -24,9 +24,6 @@ Comprehensive model training capabilities for developing custom AI solutions fro
 ### 🔄 [Finetuning](/finetuning)
 Advanced model fine-tuning for adapting pre-trained models to specialized use cases and domains.
 
-### 🔄 [Hardware](/hardware)
-Hardware Description
-
 ## Why Choose LLMBoost?
 
 - **Performance**: Optimized for production workloads with minimal latency
@@ -41,4 +38,3 @@ Choose your path based on your needs:
 - **New to AI deployment?** Start with [Inference](/inference)
 - **Building custom models?** Explore [Training](/training)  
 - **Adapting existing models?** Learn about [Finetuning](/finetuning)
-- **Adapting existing models?** Learn about [Hardware](/hardware)

@@ -2,10 +2,10 @@
 id: index
 title: Training Overview
 sidebar_position: 0
-slug: /
+slug: /training
 ---
 
-# LLMBoost Training
+# LLMBoost Training Overview
 
 Welcome to the LLMBoost Training. This section will introduce you how to pretrain a LLM in a simple, customizable, and efficient manner using LLMBoost.
 
@@ -23,4 +23,4 @@ easily and with the performant pretraining engine of LLMBoost.
 
 ## Getting Started
 
-Please explore our [Python SDK](./llmboost_sdk.mdx) to pretrain your own customized LLM with unparalleled system performance!
+Please explore our [Python SDK](../llmboost_sdk.mdx) to pretrain your own customized LLM with unparalleled system performance!

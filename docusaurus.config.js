@@ -10,7 +10,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'Mango LLMBoost',
+    title: 'Mango Documentation',
     tagline: 'Ready-to-deploy full stack AI inferencing server offering unprecedented performance and flexibility.',
     favicon: 'img/favicon.ico',
 
@@ -23,7 +23,7 @@ const config = {
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
     organizationName: 'MangoBoost, Inc.', // Usually your GitHub org/user name.
-    projectName: 'Mango LLMBoost', // Usually your repo name.
+    projectName: 'Mango Documentation', // Usually your repo name.
 
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
@@ -43,8 +43,8 @@ const config = {
             ({
                 docs: {
                     // Default docs instance for inference
-                    path: 'docs_inference',
-                    routeBasePath: 'inference',
+                    path: 'docs_llmboost',
+                    routeBasePath: 'llmboost',
                     sidebarPath: require.resolve('./sidebars.js'),
                 },
                 blog: false,
@@ -62,27 +62,27 @@ const config = {
         [
             '@docusaurus/plugin-content-docs',
             {
-                id: 'training',
-                path: 'docs_training',
-                routeBasePath: 'training',
+                id: 'gpuboost',
+                path: 'docs_gpuboost',
+                routeBasePath: 'gpuboost',
                 sidebarPath: require.resolve('./sidebars.js'),
             },
         ],
         [
             '@docusaurus/plugin-content-docs',
             {
-                id: 'finetuning',
-                path: 'docs_finetuning',
-                routeBasePath: 'finetuning',
+                id: 'storageboost',
+                path: 'docs_storageboost',
+                routeBasePath: 'storageboost',
                 sidebarPath: require.resolve('./sidebars.js'),
             },
         ],
         [
             '@docusaurus/plugin-content-docs',
             {
-                id: 'hardware',
-                path: 'docs_hardware',
-                routeBasePath: 'hardware',
+                id: 'networkboost',
+                path: 'docs_networkboost',
+                routeBasePath: 'networkboost',
                 sidebarPath: require.resolve('./sidebars.js'),
             },
         ],
@@ -94,30 +94,30 @@ const config = {
             // Replace with your project's social card
             image: 'img/MangoBoost_Logo.png',
             navbar: {
-                title: 'Mango LLMBoost',
+                title: 'Documentation',
                 logo: {
                     alt: 'MangoBoost Logo',
                     src: 'img/MangoBoost_Logo.png',
                 },
                 items: [
                     {
-                        to: '/inference',
-                        label: 'Inference',
+                        to: '/llmboost',
+                        label: 'LLMBoost',
                         position: 'left',
                     },
                     {
-                        to: '/finetuning',
-                        label: 'Finetuning',
+                        to: '/gpuboost',
+                        label: 'GPUBoost',
                         position: 'left',
                     },
                     {
-                        to: '/training',
-                        label: 'Training',
+                        to: '/storageboost',
+                        label: 'StorageBoost',
                         position: 'left',
                     },
                     {
-                        to: '/hardware',
-                        label: 'Hardware',
+                        to: '/networkboost',
+                        label: 'NetworkBoost',
                         position: 'left',
                     },
                 ],
@@ -128,22 +128,26 @@ const config = {
                 links: [
                     {
                         title: 'Docs',
-                        items: [
+                        items: [                            
                             {
-                                label: 'Inference',
-                                to: '/inference',
-                            },
+                                to: '/llmboost',
+                                label: 'LLMBoost',
+                                position: 'left',
+                            },                      
                             {
-                                label: 'Training',
-                                to: '/training',
-                            },
+                                to: '/gpuboost',
+                                label: 'GPUBoost',
+                                position: 'left',
+                            },                      
                             {
-                                label: 'Finetuning',
-                                to: '/finetuning',
-                            },
+                                to: '/storageboost',
+                                label: 'StorageBoost',
+                                position: 'left',
+                            },                      
                             {
-                                label: 'Hardware',
-                                to: '/hardware',
+                                to: '/networkboost',
+                                label: 'NetworkBoost',
+                                position: 'left',
                             },
                         ],
                     },
