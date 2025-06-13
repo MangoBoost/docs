@@ -1,8 +1,8 @@
 ---
 id: index
-title: GPUBoost Overview
-sidebar_position: 0
-slug: /
+title: GPUBoost
+sidebar_position: 2
+slug: /gpuboost
 ---
 
 # GPUBoost

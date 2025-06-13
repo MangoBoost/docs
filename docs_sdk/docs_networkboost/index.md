@@ -1,8 +1,8 @@
 ---
 id: index
-title: NetworkBoost Overview
-sidebar_position: 0
-slug: /
+title: NetworkBoost
+sidebar_position: 3
+slug: /networkboost
 ---
 
 # NetworkBoost

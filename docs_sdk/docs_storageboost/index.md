@@ -1,8 +1,8 @@
 ---
 id: index
-title: StorageBoost Overview
-sidebar_position: 0
-slug: /
+title: StorageBoost
+sidebar_position: 1
+slug: /storageboost
 ---
 
 # StorageBoost

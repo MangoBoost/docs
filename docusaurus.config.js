@@ -62,30 +62,12 @@ const config = {
         [
             '@docusaurus/plugin-content-docs',
             {
-                id: 'gpuboost',
-                path: 'docs_gpuboost',
-                routeBasePath: 'gpuboost',
+                id: 'sdk',
+                path: 'docs_sdk',
+                routeBasePath: 'sdk',
                 sidebarPath: require.resolve('./sidebars.js'),
             },
-        ],
-        [
-            '@docusaurus/plugin-content-docs',
-            {
-                id: 'storageboost',
-                path: 'docs_storageboost',
-                routeBasePath: 'storageboost',
-                sidebarPath: require.resolve('./sidebars.js'),
-            },
-        ],
-        [
-            '@docusaurus/plugin-content-docs',
-            {
-                id: 'networkboost',
-                path: 'docs_networkboost',
-                routeBasePath: 'networkboost',
-                sidebarPath: require.resolve('./sidebars.js'),
-            },
-        ],
+        ]
     ],
 
     themeConfig:
@@ -106,20 +88,10 @@ const config = {
                         position: 'left',
                     },
                     {
-                        to: '/gpuboost',
-                        label: 'GPUBoost',
+                        to: '/sdk',
+                        label: 'SDK',
                         position: 'left',
-                    },
-                    {
-                        to: '/storageboost',
-                        label: 'StorageBoost',
-                        position: 'left',
-                    },
-                    {
-                        to: '/networkboost',
-                        label: 'NetworkBoost',
-                        position: 'left',
-                    },
+                    }
                 ],
             },
 
@@ -135,20 +107,10 @@ const config = {
                                 position: 'left',
                             },                      
                             {
-                                to: '/gpuboost',
-                                label: 'GPUBoost',
+                                to: '/sdk',
+                                label: 'SDK',
                                 position: 'left',
                             },                      
-                            {
-                                to: '/storageboost',
-                                label: 'StorageBoost',
-                                position: 'left',
-                            },                      
-                            {
-                                to: '/networkboost',
-                                label: 'NetworkBoost',
-                                position: 'left',
-                            },
                         ],
                     },
                     {
