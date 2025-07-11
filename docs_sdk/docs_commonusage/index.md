@@ -2,7 +2,7 @@
 id: index
 title: Common usage
 sidebar_position: 0
-slug: /
+slug: /common-usage
 ---
 
 # Common usage

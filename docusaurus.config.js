@@ -15,7 +15,7 @@ const config = {
     favicon: 'img/favicon.ico',
 
     // Set the production url of your site here
-    url: 'https://docs.mangoboost.io',
+    url: 'https://sdk.docs.mangoboost.io',
     // Set the /<baseUrl>/ pathname under which your site is served
     // For GitHub pages deployment, it is often '/<projectName>/'
     baseUrl: '/',
@@ -43,8 +43,8 @@ const config = {
             ({
                 docs: {
                     // Default docs instance for inference
-                    path: 'docs_llmboost',
-                    routeBasePath: 'llmboost',
+                    path: 'docs_sdk',
+                    routeBasePath: '',
                     sidebarPath: require.resolve('./sidebars.js'),
                 },
                 blog: false,
@@ -59,15 +59,15 @@ const config = {
     ],
 
     plugins: [
-        [
-            '@docusaurus/plugin-content-docs',
-            {
-                id: 'sdk',
-                path: 'docs_sdk',
-                routeBasePath: 'sdk',
-                sidebarPath: require.resolve('./sidebars.js'),
-            },
-        ]
+        // [
+        //     '@docusaurus/plugin-content-docs',
+        //     {
+        //         id: 'sdk',
+        //         path: 'docs_sdk',
+        //         routeBasePath: 'sdk',
+        //         sidebarPath: require.resolve('./sidebars.js'),
+        //     },
+        // ]
     ],
 
     themeConfig:
@@ -76,22 +76,17 @@ const config = {
             // Replace with your project's social card
             image: 'img/MangoBoost_Logo.png',
             navbar: {
-                title: 'Documentation',
+                title: 'SDK',
                 logo: {
                     alt: 'MangoBoost Logo',
                     src: 'img/MangoBoost_Logo.png',
                 },
                 items: [
-                    {
-                        to: '/llmboost',
-                        label: 'LLMBoost',
-                        position: 'left',
-                    },
-                    {
-                        to: '/sdk',
-                        label: 'SDK',
-                        position: 'left',
-                    }
+                    // {
+                    //     to: '/docs_sdk',
+                    //     label: 'SDK',
+                    //     position: 'left',
+                    // }
                 ],
             },
 
@@ -100,17 +95,12 @@ const config = {
                 links: [
                     {
                         title: 'Docs',
-                        items: [                            
-                            {
-                                to: '/llmboost',
-                                label: 'LLMBoost',
-                                position: 'left',
-                            },                      
-                            {
-                                to: '/sdk',
-                                label: 'SDK',
-                                position: 'left',
-                            },                      
+                        items: [                         
+                            // {
+                            //     to: '/sdk',
+                            //     label: 'SDK',
+                            //     position: 'left',
+                            // },                      
                         ],
                     },
                     {
